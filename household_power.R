@@ -1,4 +1,6 @@
-#Usage: ReadEnergy() -> myEnergy
+#Coursera R "Exploratory Data Analysis" Project 1
+
+#Usage: ReadEnergy() -> myEnergy or ReadEnergy() ->> myEnergy to store in the global namespace
 ReadEnergy <- function () {
   #helper function to read the energy data table, call from plot[1234].R
   #All 4 plots depend on this function, so if you separate plot[1234].R please make a separate copy
@@ -51,6 +53,9 @@ plot3 <- function() {
 }
 
 plot4 <- function() {
+  #Display 4 different subplots in a 2x2 grid
+  #I manually copied a lot of the code from plot1, 2 and 3 though I could have created separate
+  #external functions.
   require(graphics)
   
   if (!exists("energy.plot4")) energy.plot4 <<- ReadEnergy()
