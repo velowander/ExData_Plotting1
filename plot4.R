@@ -21,36 +21,6 @@ ReadEnergy <- function () {
   cbind(timestamp, energy[ , 3:9])
 }
 
-plot1 <- function() {
-  #for the first plot, all we need is the global active power for the selected dates, dump others
-  if (!exists("energy.plot1")) energy.plot1 <<- ReadEnergy()[, "Global_active_power"]
-  
-  #deactivate the default x-axis ticks, use axis() for more control
-  png(file = "plot1.png", width = 480, height = 480, bg = "white")
-  hist(energy.plot1, col="RED", main="Global Active Power", xaxt="n", xlab="Global Active Power (kilowatts)", ylim=c(0,1200))
-  axis(1, at=seq(0, 6, 2)) #tick marks at x = 0, 2, 4, 6
-  dev.off()
-}
-
-plot2 <- function() {
-  #As with plot1, just the time stamp and the data column for Global active power
-  if (!exists("energy.plot2")) energy.plot2 <<- ReadEnergy()[, c("timestamp", "Global_active_power")]
-  png(file = "plot2.png", width = 480, height = 480, bg = "white")
-  plot(energy.plot2[ , "timestamp"], energy.plot2[ , "Global_active_power"], type = "l", xlab = "", ylab = "Global Active Power (kilowatts)")
-  dev.off()
-}
-
-plot3 <- function() {
-  #We need a 4 column table with the timestamp & 3 submetering values
-  if (!exists("energy.plot3")) energy.plot3 <<- ReadEnergy()[, c("timestamp", "Sub_metering_1", "Sub_metering_2", "Sub_metering_3")]
-  png(file = "plot3.png", width = 480, height = 480, bg = "white")
-  plot (energy.plot3[ , "timestamp"], energy.plot3[ , "Sub_metering_1"], col = "black", type = "l", xlab = "", ylab = "Energy sub metering")
-  lines(energy.plot3[ , "timestamp"], energy.plot3[ , "Sub_metering_2"], col = "red", type = "l")
-  lines(energy.plot3[ , "timestamp"], energy.plot3[ , "Sub_metering_3"], col = "blue", type = "l")
-  legend("topright", cex = 0.8, lty = 1, col = c("black", "red", "blue"), legend = colnames(energy.plot3)[2:4])
-  dev.off()
-}
-
 plot4 <- function() {
   #Display 4 different subplots in a 2x2 grid
   #I manually copied a lot of the code from plot1, 2 and 3 though I could have created separate
@@ -74,7 +44,3 @@ plot4 <- function() {
   plot(energy.plot4[ , "timestamp"], energy.plot4[ , "Global_reactive_power"], type = "l", xlab = "datetime", ylab = "Global_reactive_power")
   dev.off()
 }
-
-#REFERENCES
-#Use custom colClasses for reading date in mm/dd/yyyy format
-#http://stackoverflow.com/questions/13022299/specify-date-format-for-colclasses-argument-in-read-table-read-csv/13022441#13022441
