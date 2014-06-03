@@ -29,7 +29,7 @@ plot1 <- function() {
   #deactivate the default x-axis ticks, use axis() for more control
   png(file = "plot1.png", width = 480, height = 480, bg = "white")
   hist(energy.plot1, col="RED", main="Global Active Power", xaxt="n", xlab="Global Active Power (kilowatts)", ylim=c(0,1200))
-  axis(1, at=seq(0, 6, 2))
+  axis(1, at=seq(0, 6, 2)) #tick marks at x = 0, 2, 4, 6
   dev.off()
 }
 
