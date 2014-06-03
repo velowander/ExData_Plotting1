@@ -1,6 +1,8 @@
 #Usage: ReadEnergy() -> myEnergy
 ReadEnergy <- function () {
   #helper function to read the energy data table, call from plot[1234].R
+  #All 4 plots depend on this function, so if you separate plot[1234].R please make a separate copy
+  #of this function or reference it as a library
   #Out: the filtered energy table with only dates from 1 & 2 February, 2007
   #Note: Column 1 (Date represented as character) and Column 2 (time represented as character) are fused together
   #Into a new column 1: timestamp, a POSIXct type. The original Columns 1 and 2 are discarded.
